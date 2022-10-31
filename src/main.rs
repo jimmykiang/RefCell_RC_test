@@ -36,6 +36,9 @@ fn main() {
     });
 
     {
+        // Without RefCell the RC items inside Vec cannot be mutated.
+        // You cannot generally obtain a mutable reference to something inside an Rc.
+        // If you need mutability, put a Cell or RefCell inside the Rc;
         let mut gadgets = gadget_owner.gadgets.borrow_mut();
         gadgets.push(gadget1);
         gadgets.push(gadget2);
